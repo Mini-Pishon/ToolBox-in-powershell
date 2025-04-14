@@ -10,7 +10,7 @@ This PowerShell script creates a graphical user interface (GUI) to consolidate v
 - LAPS UI: Launches the LAPS user interface. Check if LAPS UI is installed. 
 - Bastion: Initiates an RDP connection to a Bastion server. 
 - Active Directory: Opens the Active Directory management tool. Check if RSAT tool "Active Directory" is installed. 
-- Gestion de Parc: Opens an Excel file for fleet management. 
+- Fleet Management: Opens an Excel file for fleet management. 
 - RunDeck: Opens RunDeck in the Chrome browser. Check if google chrome is installed.
 
 ### Category: Docs
