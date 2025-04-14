@@ -1,235 +1,235 @@
-# Créer le formulaire principal
+# Create the main form
 $formMain = New-Object System.Windows.Forms.Form
-$formMain.Text = "Boîte à Outils"  # Définir le titre de la fenêtre
-$formMain.Size = New-Object System.Drawing.Size(450, 700)  # Définir la taille de la fenêtre
+$formMain.Text = "Toolbox"  # Set the window title
+$formMain.Size = New-Object System.Drawing.Size(450, 700)  # Set the window size
 
-# Créer une étiquette pour le titre "Boîte à Outils" et la centrer
+# Create a label for the title "Toolbox" and center it
 $labelTitle = New-Object System.Windows.Forms.Label
-$labelTitle.Text = "Boîte à Outils"  # Texte de l'étiquette
-$labelTitle.Font = New-Object System.Drawing.Font("Arial", 21, [System.Drawing.FontStyle]::Bold)  # Police et style du texte
-$labelTitle.Size = New-Object System.Drawing.Size(200, 30)  # Taille de l'étiquette
-$labelTitle.Location = New-Object System.Drawing.Point([int](($formMain.ClientSize.Width - $labelTitle.Width) / 2), 20)  # Position centrée
+$labelTitle.Text = "Toolbox"  # Label text
+$labelTitle.Font = New-Object System.Drawing.Font("Arial", 21, [System.Drawing.FontStyle]::Bold)  # Font and style of the text
+$labelTitle.Size = New-Object System.Drawing.Size(200, 30)  # Label size
+$labelTitle.Location = New-Object System.Drawing.Point([int](($formMain.ClientSize.Width - $labelTitle.Width) / 2), 20)  # Centered position
 
-$formMain.Controls.Add($labelTitle)  # Ajouter l'étiquette au formulaire
+$formMain.Controls.Add($labelTitle)  # Add the label to the form
 
-# ---- Catégorie : Outils ----
-# Créer le GroupBox sans titre
+# ---- Category: Tools ----
+# Create the GroupBox without a title
 $groupOutils = New-Object System.Windows.Forms.GroupBox
-$groupOutils.Text = ""  # Pas de texte pour le titre du GroupBox
-$groupOutils.Size = New-Object System.Drawing.Size(350, 150)  # Taille du GroupBox
-$groupOutils.Location = New-Object System.Drawing.Point(50, 80)  # Position du GroupBox
+$groupOutils.Text = ""  # No text for the GroupBox title
+$groupOutils.Size = New-Object System.Drawing.Size(350, 150)  # GroupBox size
+$groupOutils.Location = New-Object System.Drawing.Point(50, 80)  # GroupBox position
 
-# Ajouter le GroupBox au formulaire
+# Add the GroupBox to the form
 $formMain.Controls.Add($groupOutils)
 
-# Dessiner manuellement le titre en dehors du GroupBox
+# Manually draw the title outside the GroupBox
 $titleLabelOutils = New-Object System.Windows.Forms.Label
-$titleLabelOutils.Text = "Outils"  # Texte du titre
-$titleLabelOutils.Font = New-Object System.Drawing.Font("Arial", 13, [System.Drawing.FontStyle]::Bold)  # Police plus grande pour le titre
-$titleLabelOutils.Location = New-Object System.Drawing.Point(50, 50)  # Positionner au-dessus du GroupBox
-$titleLabelOutils.Size = New-Object System.Drawing.Size(350, 30)  # Taille adaptée au titre
-$titleLabelOutils.TextAlign = [System.Drawing.ContentAlignment]::MiddleCenter  # Centrer le texte
-$formMain.Controls.Add($titleLabelOutils)  # Ajouter le titre au formulaire
+$titleLabelOutils.Text = "Tools"  # Title text
+$titleLabelOutils.Font = New-Object System.Drawing.Font("Arial", 13, [System.Drawing.FontStyle]::Bold)  # Larger font for the title
+$titleLabelOutils.Location = New-Object System.Drawing.Point(50, 50)  # Position above the GroupBox
+$titleLabelOutils.Size = New-Object System.Drawing.Size(350, 30)  # Size adapted to the title
+$titleLabelOutils.TextAlign = [System.Drawing.ContentAlignment]::MiddleCenter  # Center the text
+$formMain.Controls.Add($titleLabelOutils)  # Add the title to the form
 
-# Ouvrir le Centre d'administration Exchange en mode incognito
+# Open the Exchange Admin Center in incognito mode
 $linkExchange = New-Object System.Windows.Forms.Label
-$linkExchange.Text = "Admin Exchange"  # Texte du lien
-$linkExchange.ForeColor = [System.Drawing.Color]::Blue  # Couleur du texte
-$linkExchange.Location = New-Object System.Drawing.Point(20, 30)  # Position du lien
-$linkExchange.Size = New-Object System.Drawing.Size(100, 15)  # Taille du lien
-$linkExchange.Cursor = [System.Windows.Forms.Cursors]::Hand  # Curseur en forme de main
-# Définir l'événement de clic pour $linkExchange
+$linkExchange.Text = "Admin Exchange"  # Link text
+$linkExchange.ForeColor = [System.Drawing.Color]::Blue  # Text color
+$linkExchange.Location = New-Object System.Drawing.Point(20, 30)  # Link position
+$linkExchange.Size = New-Object System.Drawing.Size(100, 15)  # Link size
+$linkExchange.Cursor = [System.Windows.Forms.Cursors]::Hand  # Hand cursor
+# Define the click event for $linkExchange
 $linkExchange.Add_Click({
-    # Ouvrir le Centre d'administration Exchange en mode incognito
-    $chromePath = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"  # Chemin vers Chrome
+    # Open the Exchange Admin Center in incognito mode
+    $chromePath = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"  # Path to Chrome
     if (Test-Path $chromePath) {
-        Start-Process $chromePath -ArgumentList "--incognito https://admin.exchange.microsoft.com/#/"  # Ouvrir en mode incognito
+        Start-Process $chromePath -ArgumentList "--incognito https://admin.exchange.microsoft.com/#/"  # Open in incognito mode
     } else {
-        Write-Output "Google Chrome n'est pas installé au chemin spécifié."  # Message d'erreur
+        Write-Output "Google Chrome is not installed at the specified path."  # Error message
     }
 })
 
-# Ajouter le contrôle au GroupBox
+# Add the control to the GroupBox
 $groupOutils.Controls.Add($linkExchange)
 
-# Ouvrir l'interface utilisateur LAPS
+# Open the LAPS user interface
 $linkLAPS = New-Object System.Windows.Forms.Label
-$linkLAPS.Text = "LAPS UI"  # Texte du lien
-$linkLAPS.ForeColor = [System.Drawing.Color]::Blue  # Couleur du texte
-$linkLAPS.Location = New-Object System.Drawing.Point(20, 60)  # Position du lien
-$linkLAPS.Size = New-Object System.Drawing.Size(100, 15)  # Taille du lien
-$linkLAPS.Cursor = [System.Windows.Forms.Cursors]::Hand  # Curseur en forme de main
-# Définir l'événement de clic pour $linkLAPS
+$linkLAPS.Text = "LAPS UI"  # Link text
+$linkLAPS.ForeColor = [System.Drawing.Color]::Blue  # Text color
+$linkLAPS.Location = New-Object System.Drawing.Point(20, 60)  # Link position
+$linkLAPS.Size = New-Object System.Drawing.Size(100, 15)  # Link size
+$linkLAPS.Cursor = [System.Windows.Forms.Cursors]::Hand  # Hand cursor
+# Define the click event for $linkLAPS
 $linkLAPS.Add_Click({
-    $LAPSpath = "C:\Program Files\LAPS\AdmPwd.UI.exe"  # Chemin vers LAPS UI
+    $LAPSpath = "C:\Program Files\LAPS\AdmPwd.UI.exe"  # Path to LAPS UI
     if (Test-Path $LAPSpath) {
-        Start-Process $LAPSpath -Verb RunAs  # Exécuter en tant qu'administrateur
+        Start-Process $LAPSpath -Verb RunAs  # Run as administrator
     } else {
-        Write-Output "LAPS UI n'est pas installé au chemin spécifié"  # Message d'erreur
+        Write-Output "LAPS UI is not installed at the specified path"  # Error message
     }
 })
 $groupOutils.Controls.Add($linkLAPS)
 
-# Ouvrir une connexion RDP vers Bastion
+# Open an RDP connection to Bastion
 $linkBastion = New-Object System.Windows.Forms.Label
-$linkBastion.Text = "Bastion"  # Texte du lien
-$linkBastion.ForeColor = [System.Drawing.Color]::Blue  # Couleur du texte
-$linkBastion.Location = New-Object System.Drawing.Point(230, 60)  # Position du lien
-$linkBastion.Size = New-Object System.Drawing.Size(100, 15)  # Taille du lien
-$linkBastion.Cursor = [System.Windows.Forms.Cursors]::Hand  # Curseur en forme de main
-# Définir l'événement de clic pour $linkBastion
+$linkBastion.Text = "Bastion"  # Link text
+$linkBastion.ForeColor = [System.Drawing.Color]::Blue  # Text color
+$linkBastion.Location = New-Object System.Drawing.Point(230, 60)  # Link position
+$linkBastion.Size = New-Object System.Drawing.Size(100, 15)  # Link size
+$linkBastion.Cursor = [System.Windows.Forms.Cursors]::Hand  # Hand cursor
+# Define the click event for $linkBastion
 $linkBastion.Add_Click({
-    Start-Process "C:\Windows\system32\mstsc.exe" -ArgumentList "/v:"  # Lancer la connexion RDP
+    Start-Process "C:\Windows\system32\mstsc.exe" -ArgumentList "/v:"  # Launch the RDP connection
 })
 
 $groupOutils.Controls.Add($linkBastion)
 
 $linkAD = New-Object System.Windows.Forms.Label
-$linkAD.Text = "Active Directory"  # Texte du lien
-$linkAD.ForeColor = [System.Drawing.Color]::Blue  # Couleur du texte
-$linkAD.Location = New-Object System.Drawing.Point(230, 30)  # Position du lien
-$linkAD.Size = New-Object System.Drawing.Size(100, 15)  # Taille du lien
-$linkAD.Cursor = [System.Windows.Forms.Cursors]::Hand  # Curseur en forme de main
-# Définir l'événement de clic pour $linkAD
+$linkAD.Text = "Active Directory"  # Link text
+$linkAD.ForeColor = [System.Drawing.Color]::Blue  # Text color
+$linkAD.Location = New-Object System.Drawing.Point(230, 30)  # Link position
+$linkAD.Size = New-Object System.Drawing.Size(100, 15)  # Link size
+$linkAD.Cursor = [System.Windows.Forms.Cursors]::Hand  # Hand cursor
+# Define the click event for $linkAD
 $linkAD.Add_Click({
-    $ADPath = "C:\Windows\system32\dsa.msc"  # Chemin vers l'outil Active Directory
+    $ADPath = "C:\Windows\system32\dsa.msc"  # Path to the Active Directory tool
     if (Test-Path $ADPath) {
-        Start-Process $ADPath -Verb Runas  # Exécuter en tant qu'administrateur
+        Start-Process $ADPath -Verb Runas  # Run as administrator
     } else {
-        Write-Output "L'outil Active Directory n'est pas installé au chemin spécifié"  # Message d'erreur
+        Write-Output "The Active Directory tool is not installed at the specified path"  # Error message
     }
 })
 $groupOutils.Controls.Add($linkAD)
 
-# Créer une nouvelle étiquette pour Gestion de Parc
+# Create a new label for Fleet Management
 $linkGDP = New-Object System.Windows.Forms.Label
-$linkGDP.Text = "Gestion de Parc"  # Texte du lien
-$linkGDP.ForeColor = [System.Drawing.Color]::Blue  # Couleur du texte
-$linkGDP.Location = New-Object System.Drawing.Point(20, 90)  # Position du lien
-$linkGDP.Size = New-Object System.Drawing.Size(100, 15)  # Taille du lien
-$linkGDP.Cursor = [System.Windows.Forms.Cursors]::Hand  # Curseur en forme de main
+$linkGDP.Text = "Fleet Management"  # Link text
+$linkGDP.ForeColor = [System.Drawing.Color]::Blue  # Text color
+$linkGDP.Location = New-Object System.Drawing.Point(20, 90)  # Link position
+$linkGDP.Size = New-Object System.Drawing.Size(100, 15)  # Link size
+$linkGDP.Cursor = [System.Windows.Forms.Cursors]::Hand  # Hand cursor
 
-# Définir l'événement de clic pour $linkGDP
+# Define the click event for $linkGDP
 $linkGDP.Add_Click({
-    $GDPPath = ".xlsx"  # Lien vers le fichier Excel
-    Start-Process "ms-excel:ofe|u|$GDPPath"  # Ouvrir le fichier Excel
+    $GDPPath = ".xlsx"  # Link to the Excel file
+    Start-Process "ms-excel:ofe|u|$GDPPath"  # Open the Excel file
 })
 $groupOutils.Controls.Add($linkGDP)
 
-# Créer une nouvelle étiquette pour RunDeck
+# Create a new label for RunDeck
 $linkRD = New-Object System.Windows.Forms.Label
-$linkRD.Text = "RunDeck"  # Texte du lien
-$linkRD.ForeColor = [System.Drawing.Color]::Blue  # Couleur du texte
-$linkRD.Location = New-Object System.Drawing.Point(230, 90)  # Position du lien
-$linkRD.Size = New-Object System.Drawing.Size(100, 15)  # Taille du lien
-$linkRD.Cursor = [System.Windows.Forms.Cursors]::Hand  # Curseur en forme de main
+$linkRD.Text = "RunDeck"  # Link text
+$linkRD.ForeColor = [System.Drawing.Color]::Blue  # Text color
+$linkRD.Location = New-Object System.Drawing.Point(230, 90)  # Link position
+$linkRD.Size = New-Object System.Drawing.Size(100, 15)  # Link size
+$linkRD.Cursor = [System.Windows.Forms.Cursors]::Hand  # Hand cursor
 
-# Définir l'événement de clic pour $linkRD
+# Define the click event for $linkRD
 $linkRD.Add_Click({
-    $chromePath = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"  # Chemin vers Chrome
+    $chromePath = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"  # Path to Chrome
     if (Test-Path $chromePath) {
-        Start-Process $chromePath ""  # Ouvrir RunDeck
+        Start-Process $chromePath ""  # Open RunDeck
     } else {
-        Write-Output "Google Chrome n'est pas installé au chemin spécifié."  # Message d'erreur
+        Write-Output "Google Chrome is not installed at the specified path."  # Error message
     }
 })
 
 $groupOutils.Controls.Add($linkRD)
 
-# ---- Catégorie : Docs ----
-# Créer le GroupBox pour la catégorie Docs
+# ---- Category: Docs ----
+# Create the GroupBox for the Docs category
 $groupDocs = New-Object System.Windows.Forms.GroupBox
-$groupDocs.Text = ""  # Pas de texte pour le titre du GroupBox
-$groupDocs.Size = New-Object System.Drawing.Size(350, 150)  # Taille du GroupBox
-$groupDocs.Location = New-Object System.Drawing.Point(50, 270)  # Position du GroupBox
+$groupDocs.Text = ""  # No text for the GroupBox title
+$groupDocs.Size = New-Object System.Drawing.Size(350, 150)  # GroupBox size
+$groupDocs.Location = New-Object System.Drawing.Point(50, 270)  # GroupBox position
 $formMain.Controls.Add($groupDocs)
 
-# Dessiner manuellement le titre pour Docs en dehors du GroupBox
+# Manually draw the title for Docs outside the GroupBox
 $titleLabelDocs = New-Object System.Windows.Forms.Label
-$titleLabelDocs.Text = "Docs"  # Texte du titre
-$titleLabelDocs.Font = New-Object System.Drawing.Font("Arial", 13, [System.Drawing.FontStyle]::Bold)  # Police et style du texte
-$titleLabelDocs.Location = New-Object System.Drawing.Point(50, 240)  # Positionner au-dessus du GroupBox
-$titleLabelDocs.Size = New-Object System.Drawing.Size(350, 15)  # Taille adaptée au titre
-$titleLabelDocs.TextAlign = [System.Drawing.ContentAlignment]::MiddleCenter  # Centrer le texte
-$formMain.Controls.Add($titleLabelDocs)  # Ajouter le titre au formulaire
+$titleLabelDocs.Text = "Docs"  # Title text
+$titleLabelDocs.Font = New-Object System.Drawing.Font("Arial", 13, [System.Drawing.FontStyle]::Bold)  # Font and style of the text
+$titleLabelDocs.Location = New-Object System.Drawing.Point(50, 240)  # Position above the GroupBox
+$titleLabelDocs.Size = New-Object System.Drawing.Size(350, 15)  # Size adapted to the title
+$titleLabelDocs.TextAlign = [System.Drawing.ContentAlignment]::MiddleCenter  # Center the text
+$formMain.Controls.Add($titleLabelDocs)  # Add the title to the form
 
-# Liens de documentation à l'intérieur du GroupBox
+# Documentation links inside the GroupBox
 $linkDoc1 = New-Object System.Windows.Forms.Label
-$linkDoc1.Text = "Documentation Confluence"  # Texte du lien
-$linkDoc1.ForeColor = [System.Drawing.Color]::Blue  # Couleur du texte
-$linkDoc1.Location = New-Object System.Drawing.Point(20, 30)  # Position du lien
-$linkDoc1.Size = New-Object System.Drawing.Size(150, 15)  # Taille du lien
-$linkDoc1.Cursor = [System.Windows.Forms.Cursors]::Hand  # Curseur en forme de main
+$linkDoc1.Text = "Documentation xxx"  # Link text
+$linkDoc1.ForeColor = [System.Drawing.Color]::Blue  # Text color
+$linkDoc1.Location = New-Object System.Drawing.Point(20, 30)  # Link position
+$linkDoc1.Size = New-Object System.Drawing.Size(150, 15)  # Link size
+$linkDoc1.Cursor = [System.Windows.Forms.Cursors]::Hand  # Hand cursor
 $linkDoc1.Add_Click({
-    # Ouvrir un lien de documentation (exemple)
-    Start-Process "chrome.exe" "https://confluence.is.relyens.net/"  # Ouvrir le lien dans Chrome
+    # Open a documentation link (example)
+    Start-Process "chrome.exe" ""  # Open the link in Chrome
 })
 $groupDocs.Controls.Add($linkDoc1)
 
 $linkDoc2 = New-Object System.Windows.Forms.Label
-$linkDoc2.Text = "Documentation Fresh Service"  # Texte du lien
-$linkDoc2.ForeColor = [System.Drawing.Color]::Blue  # Couleur du texte
-$linkDoc2.Location = New-Object System.Drawing.Point(20, 60)  # Position du lien
-$linkDoc2.Size = New-Object System.Drawing.Size(180, 15)  # Taille du lien
-$linkDoc2.Cursor = [System.Windows.Forms.Cursors]::Hand  # Curseur en forme de main
+$linkDoc2.Text = "Documentation xxx"  # Link text
+$linkDoc2.ForeColor = [System.Drawing.Color]::Blue  # Text color
+$linkDoc2.Location = New-Object System.Drawing.Point(20, 60)  # Link position
+$linkDoc2.Size = New-Object System.Drawing.Size(180, 15)  # Link size
+$linkDoc2.Cursor = [System.Windows.Forms.Cursors]::Hand  # Hand cursor
 $linkDoc2.Add_Click({
-    # Ouvrir un autre lien de documentation (exemple)
-    Start-Process "chrome.exe" ""  # Ouvrir le lien dans Chrome
+    # Open another documentation link (example)
+    Start-Process "chrome.exe" ""  # Open the link in Chrome
 })
 $groupDocs.Controls.Add($linkDoc2)
 
 $linkDoc3 = New-Object System.Windows.Forms.Label
-$linkDoc3.Text = "Documentation DEX"  # Texte du lien
-$linkDoc3.ForeColor = [System.Drawing.Color]::Blue  # Couleur du texte
-$linkDoc3.Location = New-Object System.Drawing.Point(20, 90)  # Position du lien
-$linkDoc3.Size = New-Object System.Drawing.Size(150, 15)  # Taille du lien
-$linkDoc3.Cursor = [System.Windows.Forms.Cursors]::Hand  # Curseur en forme de main
+$linkDoc3.Text = "Documentation xxx"  # Link text
+$linkDoc3.ForeColor = [System.Drawing.Color]::Blue  # Text color
+$linkDoc3.Location = New-Object System.Drawing.Point(20, 90)  # Link position
+$linkDoc3.Size = New-Object System.Drawing.Size(150, 15)  # Link size
+$linkDoc3.Cursor = [System.Windows.Forms.Cursors]::Hand  # Hand cursor
 $linkDoc3.Add_Click({
-    # Ouvrir l'Explorateur avec DEX
-    Start-Process "explorer.exe" "\\"  # Ouvrir le chemin réseau
+    # Open Explorer with DEX
+    Start-Process "explorer.exe" "\\"  # Open the network path
 })
 $groupDocs.Controls.Add($linkDoc3)
 
-# ---- Catégorie : Scripts ----
-# Créer le GroupBox pour la catégorie Scripts
+# ---- Category: Scripts ----
+# Create the GroupBox for the Scripts category
 $groupScripts = New-Object System.Windows.Forms.GroupBox
-$groupScripts.Text = ""  # Pas de texte pour le titre du GroupBox
-$groupScripts.Size = New-Object System.Drawing.Size(350, 150)  # Taille du GroupBox
-$groupScripts.Location = New-Object System.Drawing.Point(50, 460)  # Position du GroupBox
+$groupScripts.Text = ""  # No text for the GroupBox title
+$groupScripts.Size = New-Object System.Drawing.Size(350, 150)  # GroupBox size
+$groupScripts.Location = New-Object System.Drawing.Point(50, 460)  # GroupBox position
 $formMain.Controls.Add($groupScripts)
 
-# Dessiner manuellement le titre pour Scripts en dehors du GroupBox
+# Manually draw the title for Scripts outside the GroupBox
 $titleLabelScripts = New-Object System.Windows.Forms.Label
-$titleLabelScripts.Text = "Scripts"  # Texte du titre
-$titleLabelScripts.Font = New-Object System.Drawing.Font("Arial", 13, [System.Drawing.FontStyle]::Bold)  # Police et style du texte
-$titleLabelScripts.Location = New-Object System.Drawing.Point(50, 430)  # Positionner au-dessus du GroupBox
-$titleLabelScripts.Size = New-Object System.Drawing.Size(350, 15)  # Taille adaptée au titre
-$titleLabelScripts.TextAlign = [System.Drawing.ContentAlignment]::MiddleCenter  # Centrer le texte
-$formMain.Controls.Add($titleLabelScripts)  # Ajouter le titre au formulaire
+$titleLabelScripts.Text = "Scripts"  # Title text
+$titleLabelScripts.Font = New-Object System.Drawing.Font("Arial", 13, [System.Drawing.FontStyle]::Bold)  # Font and style of the text
+$titleLabelScripts.Location = New-Object System.Drawing.Point(50, 430)  # Position above the GroupBox
+$titleLabelScripts.Size = New-Object System.Drawing.Size(350, 15)  # Size adapted to the title
+$titleLabelScripts.TextAlign = [System.Drawing.ContentAlignment]::MiddleCenter  # Center the text
+$formMain.Controls.Add($titleLabelScripts)  # Add the title to the form
 
 $linkScriptAD = New-Object System.Windows.Forms.Label
-$linkScriptAD.Text = "Comparer des groupes Active Directory"  # Texte du lien
-$linkScriptAD.ForeColor = [System.Drawing.Color]::Blue  # Couleur du texte
-$linkScriptAD.Location = New-Object System.Drawing.Point(20, 30)  # Position du lien
-$linkScriptAD.Size = New-Object System.Drawing.Size(230, 15)  # Taille du lien
-$linkScriptAD.Cursor = [System.Windows.Forms.Cursors]::Hand  # Curseur en forme de main
+$linkScriptAD.Text = "Compare Active Directory Groups"  # Link text
+$linkScriptAD.ForeColor = [System.Drawing.Color]::Blue  # Text color
+$linkScriptAD.Location = New-Object System.Drawing.Point(20, 30)  # Link position
+$linkScriptAD.Size = New-Object System.Drawing.Size(230, 15)  # Link size
+$linkScriptAD.Cursor = [System.Windows.Forms.Cursors]::Hand  # Hand cursor
 $linkScriptAD.Add_Click({
-    # Exécuter le script de comparaison des droits AD avec des privilèges élevés
-    Start-Process powershell.exe -ArgumentList "-WindowStyle hidden -File `"\\.ps1`"" -Verb Runas -WindowStyle hidden  # Exécuter le script PowerShell
+    # Execute the AD rights comparison script with elevated privileges
+    Start-Process powershell.exe -ArgumentList "-WindowStyle hidden -File `"\\.ps1`"" -Verb Runas -WindowStyle hidden  # Execute the PowerShell script, path to ps1 file
 })
 $groupScripts.Controls.Add($linkScriptAD)
 
 $linkADGroups = New-Object System.Windows.Forms.Label
-$linkADGroups.Text = "Rechercher de groupe(s) Active Directory"  # Texte du lien
-$linkADGroups.ForeColor = [System.Drawing.Color]::Blue  # Couleur du texte
-$linkADGroups.Location = New-Object System.Drawing.Point(20, 60)  # Position du lien
-$linkADGroups.Size = New-Object System.Drawing.Size(230, 15)  # Taille du lien
-$linkADGroups.Cursor = [System.Windows.Forms.Cursors]::Hand  # Curseur en forme de main
+$linkADGroups.Text = "Search Active Directory Group(s)"  # Link text
+$linkADGroups.ForeColor = [System.Drawing.Color]::Blue  # Text color
+$linkADGroups.Location = New-Object System.Drawing.Point(20, 60)  # Link position
+$linkADGroups.Size = New-Object System.Drawing.Size(230, 15)  # Link size
+$linkADGroups.Cursor = [System.Windows.Forms.Cursors]::Hand  # Hand cursor
 $linkADGroups.Add_Click({
-    # Exécuter le script ACL share avec des privilèges élevés
-    Start-Process powershell.exe -ArgumentList "-NoExit -File `"\\.ps1`"" -Verb Runas  # Exécuter le script PowerShell
+    # Execute the ACL share script with elevated privileges
+    Start-Process powershell.exe -ArgumentList "-NoExit -File `"\\.ps1`"" -Verb Runas  # Execute the PowerShell script, path to ps1 file
 })
 $groupScripts.Controls.Add($linkADGroups)
 
-# Afficher le formulaire
-$formMain.ShowDialog()  # Afficher la fenêtre
+# Display the form
+$formMain.ShowDialog()  # Display the window
